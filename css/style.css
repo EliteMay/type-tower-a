@@ -1,0 +1,12 @@
+* { box-sizing: border-box; }
+html, body { min-height: 100%; }
+body {
+  margin: 0;
+  font-family: "Yu Gothic UI", "Yu Gothic", sans-serif;
+  color: #172034;
+  background:
+    radial-gradient(ellipse at 16% 22%, rgba(255,255,255,.85) 0 8%, transparent 9%),
+    radial-gradient(ellipse at 78% 17%, rgba(255,255,255,.82) 0 9%, transparent 10%),
+    linear-gradient(#75c9ff, #cceeff 62%, #effaff);
+  background-attachment: fixed;
+}
