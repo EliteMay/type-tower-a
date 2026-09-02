@@ -7,30 +7,34 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
- <section data-screen="select">
-   <video class="select-bg-video" autoplay muted loop playsinline>
-  <source src="videos/menu-bg.mp4" type="video/mp4">
-</video>
 
-  <div class="select-bg-overlay"></div>
+  <section data-screen="select">
+    <video class="select-bg-video" autoplay muted loop playsinline>
+      <source src="videos/menu-bg.mp4" type="video/mp4">
+    </video>
 
-   <div class="tower-select">
-     <article class="tower-option">
-       <div class="tower-image">漢字の塔</div>
-       <button data-mode="kanji">この塔に挑戦</button>
-     </article>
-     <article class="tower-option">
-       <div class="tower-image">英訳の塔</div>
-       <button data-mode="eiyaku">この塔に挑戦</button>
-     </article>
-     <article class="tower-option">
-       <div class="tower-image">和訳の塔</div>
-       <button data-mode="wayaku">この塔に挑戦</button>
-     </article>
-     </div>
+    <div class="select-bg-overlay"></div>
+
+    <div class="tower-select">
+      <article class="tower-option">
+        <div class="tower-image">漢字の塔</div>
+        <button data-mode="kanji">この塔に挑戦</button>
+      </article>
+
+      <article class="tower-option">
+        <div class="tower-image">英訳の塔</div>
+        <button data-mode="eiyaku">この塔に挑戦</button>
+      </article>
+
+      <article class="tower-option">
+        <div class="tower-image">和訳の塔</div>
+        <button data-mode="wayaku">この塔に挑戦</button>
+      </article>
+    </div>
   </section>
+
   <section data-screen="game" hidden></section>
-<section data-screen="result" hidden></section>
+  <section data-screen="result" hidden></section>
 
   <script src="js/main.js"></script>
 </body>
