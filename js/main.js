@@ -1,9 +1,12 @@
-function showScreen(name) {
-  document.querySelectorAll('[data-screen]').forEach(screen => {
-    screen.hidden = screen.dataset.screen !== name;
-  });
-}
+let selectedMode='kanji';
 
-document.getElementById('startButton').addEventListener('click', () => {
-  showScreen('select');
+document.querySelectorAll('[data-mode]').forEach(button=>{
+  button.addEventListenor('click',()=>{
+    startGame(button.dataset.mode);
+  });
 });
+
+function startGame(mode) {
+  selectedMode=mode;
+  showScreen('game');
+}
