@@ -16,3 +16,4 @@ function showScreen(screenName) {
     section.hidden = (section.dataset.screen !== screenName);
   });
 }
+showScreen('select');
