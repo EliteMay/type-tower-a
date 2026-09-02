@@ -131,24 +131,7 @@ button {
   outline-offset: 3px;
 }
 
-@media (max-width: 720px) {
-  [data-screen="select"] {
-    overflow: auto;
-    align-items: start;
-    padding: 24px 18px 30px;
-  }
-
-  .tower-select {
-    grid-template-columns: 1fr;
-    width: min(350px, 100%);
-    gap: 24px;
-  }
-
-  .tower-image {
-    min-height: 120px;
-  }
-}
-
+/* PCで縦幅が低い時だけ、塔の仮スペースを少し縮める */
 @media (max-height: 720px) and (min-width: 721px) {
   [data-screen="select"] {
     padding-top: 18px;
