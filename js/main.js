@@ -10,3 +10,9 @@ function startGame(mode) {
   selectedMode=mode;
   showScreen('game');
 }
+
+function showScreen(screenName) {
+  document.querySelectorAll('[data-screen]').forEach(section => {
+    section.hidden = (section.dataset.screen !== screenName);
+  });
+}
