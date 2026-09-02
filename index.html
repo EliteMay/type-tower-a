@@ -9,38 +9,44 @@
 <body>
 
   <section data-screen="select">
-  <video class="select-bg-video" autoplay muted loop playsinline>
-    <source src="videos/menu-bg.mp4" type="video/mp4">
-  </video>
+    <video class="select-bg-video" autoplay muted loop playsinline>
+      <source src="videos/menu-bg.mp4" type="video/mp4">
+    </video>
 
-  <div class="select-bg-overlay"></div>
+    <div class="select-bg-overlay"></div>
 
-  <header class="select-brand">
-    <!-- ロゴが完成したら実際のパスに変更 -->
-    <img class="select-logo" src="assets/images/logo.png" alt="TYPE TOWER ロゴ">
-    <h1 class="select-title">TYPE TOWER</h1>
-  </header>
+    <header class="select-brand">
+      <!-- assets/images/logo.png を追加したらここに自動表示される -->
+      <img
+        class="select-logo"
+        src="assets/images/logo.png"
+        alt="TYPE TOWER ロゴ"
+        onerror="this.hidden=true"
+      >
+      <h1 class="select-title">TYPE TOWER</h1>
+    </header>
 
-  <div class="tower-select">
-    <article class="tower-option">
-      <div class="tower-image"></div>
-      <h2 class="tower-name">漢字の塔</h2>
-      <button data-mode="kanji">この塔に挑戦</button>
-    </article>
+    <div class="tower-select">
+      <article class="tower-option">
+        <div class="tower-image"></div>
+        <h2 class="tower-name">漢字の塔</h2>
+        <button data-mode="kanji">この塔に挑戦</button>
+      </article>
 
-    <article class="tower-option">
-      <div class="tower-image"></div>
-      <h2 class="tower-name">英訳の塔</h2>
-      <button data-mode="eiyaku">この塔に挑戦</button>
-    </article>
+      <article class="tower-option">
+        <div class="tower-image"></div>
+        <h2 class="tower-name">英訳の塔</h2>
+        <button data-mode="eiyaku">この塔に挑戦</button>
+      </article>
 
-    <article class="tower-option">
-      <div class="tower-image"></div>
-      <h2 class="tower-name">和訳の塔</h2>
-      <button data-mode="wayaku">この塔に挑戦</button>
-    </article>
-  </div>
-</section>
+      <article class="tower-option">
+        <div class="tower-image"></div>
+        <h2 class="tower-name">和訳の塔</h2>
+        <button data-mode="wayaku">この塔に挑戦</button>
+      </article>
+    </div>
+  </section>
+
   <section data-screen="game" hidden></section>
   <section data-screen="result" hidden></section>
 
