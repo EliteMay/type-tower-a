@@ -1,7 +1,7 @@
 let selectedMode='kanji';
 
 document.querySelectorAll('[data-mode]').forEach(button=>{
-  button.addEventListenor('click',()=>{
+  button.addEventListener('click',()=>{
     startGame(button.dataset.mode);
   });
 });
