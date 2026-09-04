@@ -78,6 +78,7 @@ button { cursor: pointer; }
   display: grid;
   place-items: center;
   padding: 70px 24px 24px;
+  background: url("../assets/images/sky-bg.jpg") center / cover no-repeat;
 }
 .back-button { position: absolute; top: 18px; left: 18px; z-index: 10; }
 .game-stage {
@@ -87,7 +88,19 @@ button { cursor: pointer; }
   overflow: hidden;
   border: 7px solid #aa8d64;
   border-radius: 18px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   box-shadow: 0 24px 50px rgba(31,73,108,.24);
+}
+[data-screen="game"][data-mode="kanji"] .game-stage {
+  background-image: url("../assets/images/tower-blue.jpg");
+}
+[data-screen="game"][data-mode="eiyaku"] .game-stage {
+  background-image: url("../assets/images/tower-light.jpg");
+}
+[data-screen="game"][data-mode="wayaku"] .game-stage {
+  background-image: url("../assets/images/tower-dark.jpg");
 }
 .game-hud {
   position: relative;
