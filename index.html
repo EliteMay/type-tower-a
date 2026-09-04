@@ -7,38 +7,38 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+ <section data-screen="select">
+   <div class="tower-select">
+     <article class="tower-option">
+       <div class="tower-image tower-kanji">漢字の塔</div>
+       <button data-mode="kanji">この塔に挑戦</button>
+     </article>
+     <article class="tower-option">
+       <div class="tower-image tower-eiyaku">英訳の塔</div>
+       <button data-mode="eiyaku">この塔に挑戦</button>
+     </article>
+     <article class="tower-option">
+       <div class="tower-image tower-wayaku">和訳の塔</div>
+       <button data-mode="wayaku">この塔に挑戦</button>
+     </article>
+   </div>
+ </section>
 
-  <section data-screen="select">
-    <video class="select-bg-video" autoplay muted loop playsinline>
-      <source src="videos/menu-bg.mp4" type="video/mp4">
-    </video>
+ <section data-screen="game" hidden>
+   <button id="gameBackButton" class="back-button">塔選択へ戻る</button>
+   <div class="game-stage">
+     <div class="game-hud">
+       <div class="hud-top"><div></div></div>
+       <div id="questionCard" class="question-card">
+         <p>読みを入力</p>
+         <h2 id="questionText">読み込み中…</h2>
+       </div>
+     </div>
+   </div>
+ </section>
+<section data-screen="result" hidden></section>
 
-    <div class="select-bg-overlay"></div>
-
-    <div class="tower-select">
-      <article class="tower-option">
-        <div class="tower-image"></div>
-        <h2 class="tower-name">漢字の塔</h2>
-        <button data-mode="kanji">この塔に挑戦</button>
-      </article>
-
-      <article class="tower-option">
-        <div class="tower-image"></div>
-        <h2 class="tower-name">英訳の塔</h2>
-        <button data-mode="eiyaku">この塔に挑戦</button>
-      </article>
-
-      <article class="tower-option">
-        <div class="tower-image"></div>
-        <h2 class="tower-name">和訳の塔</h2>
-        <button data-mode="wayaku">この塔に挑戦</button>
-      </article>
-    </div>
-  </section>
-
-  <section data-screen="game" hidden>あああ</section>
-  <section data-screen="result" hidden>あああ</section>
-
+  <script src="js/game.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
