@@ -26,4 +26,36 @@ function showNextQuestion(){
   const pool=questions;
   currentQuestion=pool[Math.floor(Math.random()*pool.length)];
   document.getElementById('questionText').textContent=currentQuestion.question;
+  document.getElementById('answerInput').value='';
+  document.getElementById('answerInput').focus();
+}
+
+const answerForm=document.getElementById('answerForm');
+const answerInput=document.getElementById('answerInput');
+const judgeMessage=document.getElementById('judgeMessage');
+
+answerForm.addEventListener('submit',async event=>{
+  event.preventDefault();
+  if(!currentQuestion) return;
+  const answer=normalizeAnswer(answerInput.value);
+  if(!answer) return;
+  if(answer===normalizeAnswer(currentQuestion.answer)){
+    await handleCorrect();
+  }else{
+    await handleMiss();
+  }
+});
+
+function normalizeAnswer(value){
+  return value.trim().toLowerCase().replace(/\s+/g,' ');
+}
+
+async function handleCorrect(){
+  judgeMessage.textContent='正解！';
+  showNextQuestion();
+}
+
+async function handleMiss(){
+  judgeMessage.textContent='MISS';
+  showNextQuestion();
 }
