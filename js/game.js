@@ -2,8 +2,11 @@ const DATA_FILES={kanji:'./data/kanji.json'};
 
 let questions=[];
 let currentQuestion=null;
+let floor=1;
 
 async function prepareGame(){
+  floor=1;
+  updateFloor();
   const loaded=await loadQuestions();
   if(loaded) showNextQuestion();
 }
@@ -51,11 +54,26 @@ function normalizeAnswer(value){
 }
 
 async function handleCorrect(){
-  judgeMessage.textContent='正解！';
+  floor+=1;
+  updateFloor();
+  judgeMessage.textContent='正解！ +1F';
+  if(floor>=10){
+    showScreen('result');
+    return;
+  }
   showNextQuestion();
 }
 
 async function handleMiss(){
-  judgeMessage.textContent='MISS';
+  floor=Math.max(1,floor-1);
+  updateFloor();
+  judgeMessage.textContent='MISS -1F';
   showNextQuestion();
+}
+
+function updateFloor(){
+  document.getElementById('floorText').textContent=floor+'F';
+  document.querySelectorAll('[data-floor]').forEach(item=>{
+    item.classList.toggle('is-current',Number(item.dataset.floor)===floor);
+  });
 }
