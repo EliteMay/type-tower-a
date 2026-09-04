@@ -8,7 +8,6 @@ document.querySelectorAll('[data-mode]').forEach(button=>{
 
 async function startGame(mode) {
   selectedMode=mode;
-  document.querySelector('[data-screen="game"]').dataset.mode=mode;
   showScreen('game');
   await prepareGame();
 }
