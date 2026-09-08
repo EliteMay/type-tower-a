@@ -159,3 +159,18 @@ button { cursor: pointer; }
 }
 .floor-rail span.is-current { background: #17345f; color: #fff; outline: 2px solid #d8ae58; }
 #floorText { display: block; color: #17345f; font-size: clamp(2rem,5vw,3.5rem); }
+[data-screen="result"] { display:grid; place-items:center; padding:32px; }
+.result-panel {
+  width:min(620px,100%);
+  padding:32px;
+  border:2px solid #d8ae58;
+  border-radius:16px;
+  background:#fff;
+  text-align:center;
+}
+.result-kicker { margin:0 0 6px; font-weight:900; color:#7b673d; }
+.result-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin:24px 0; }
+.result-grid div { padding:18px; border:1px solid #ddd; border-radius:10px; }
+.result-grid span { display:block; color:#666; }
+.result-grid strong { display:block; margin-top:4px; font-size:2rem; }
+.result-actions { display:flex; justify-content:center; gap:10px; }
