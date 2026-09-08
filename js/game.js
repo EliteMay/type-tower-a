@@ -25,19 +25,6 @@ const answerForm = document.getElementById('answerForm');
 const answerInput = document.getElementById('answerInput');
 const judgeMessage = document.getElementById('judgeMessage');
 
-answerInput.addEventListener('input', () => {
-  let val = answerInput.value;
-
-  if (typeof selectedMode !== 'undefined' && selectedMode === 'kanji') {
-    val = val.replace(/[\u30a1-\u30f6]/g, match =>
-      String.fromCharCode(match.charCodeAt(0) - 0x60)
-    );
-    answerInput.value = val.replace(/[^ぁ-ん0-９0-9]/g, '');
-  } else if (typeof selectedMode !== 'undefined' && selectedMode === 'eiyaku') {
-    answerInput.value = val.replace(/[^a-zA-Z0-9\s'-]/g, '');
-  }
-});
-
 async function prepareGame() {
   floor = 1;
   updateFloor();
