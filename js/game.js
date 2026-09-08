@@ -1,13 +1,17 @@
 const DATA_FILES = { kanji: './data/kanji.json' };
 
-let questions = [];  
-let remainingQuestions = []; 
+let questions = [];
+let remainingQuestions = [];
 let currentQuestion = null;
 let floor = 1;
+let correctCount = 0;
+let missCount = 0;
 
 async function prepareGame() {
   floor = 1;
   updateFloor();
+  correctCount = 0;
+  missCount = 0;
   const loaded = await loadQuestions();
   if (loaded) {
     resetQuestionPool();
@@ -69,17 +73,19 @@ function normalizeAnswer(value){
 }
 
 async function handleCorrect(){
+  correctCount+=1;
   floor+=1;
   updateFloor();
   judgeMessage.textContent='正解！ +1F';
   if(floor>=10){
-    showScreen('result');
+    finishGame();
     return;
   }
   showNextQuestion();
 }
 
 async function handleMiss(){
+  missCount+=1;
   floor=Math.max(1,floor-1);
   updateFloor();
   judgeMessage.textContent='MISS -1F';
@@ -91,4 +97,10 @@ function updateFloor(){
   document.querySelectorAll('[data-floor]').forEach(item=>{
     item.classList.toggle('is-current',Number(item.dataset.floor)===floor);
   });
+}
+
+function finishGame(){
+  document.getElementById('resultCorrect').textContent=correctCount;
+  document.getElementById('resultMiss').textContent=missCount;
+  showScreen('result');
 }
