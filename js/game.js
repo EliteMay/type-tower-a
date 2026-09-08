@@ -1,35 +1,50 @@
-const DATA_FILES={kanji:'./data/kanji.json'};
+const DATA_FILES = { kanji: './data/kanji.json' };
 
-let questions=[];
-let currentQuestion=null;
-let floor=1;
+let questions = [];  
+let remainingQuestions = []; 
+let currentQuestion = null;
+let floor = 1;
 
-async function prepareGame(){
-  floor=1;
+async function prepareGame() {
+  floor = 1;
   updateFloor();
-  const loaded=await loadQuestions();
-  if(loaded) showNextQuestion();
+  const loaded = await loadQuestions();
+  if (loaded) {
+    resetQuestionPool();
+    showNextQuestion();
+  }
 }
 
-async function loadQuestions(){
-  try{
-    const response=await fetch(DATA_FILES.kanji);
-    if(!response.ok) throw new Error('HTTP '+response.status);
-    questions=await response.json();
-    if(!Array.isArray(questions) || questions.length===0) throw new Error('問題データが空です');
+async function loadQuestions() {
+  try {
+    const response = await fetch(DATA_FILES.kanji);
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+    questions = await response.json();
+    if (!Array.isArray(questions) || questions.length === 0) throw new Error('問題データが空です');
     return true;
-  }catch(error){
+  } catch (error) {
     console.error(error);
-    document.getElementById('questionText').textContent='問題を読み込めませんでした';
+    document.getElementById('questionText').textContent = '問題を読み込めませんでした';
     return false;
   }
 }
 
-function showNextQuestion(){
-  const pool=questions;
-  currentQuestion=pool[Math.floor(Math.random()*pool.length)];
-  document.getElementById('questionText').textContent=currentQuestion.question;
-  document.getElementById('answerInput').value='';
+function resetQuestionPool() {
+  remainingQuestions = [...questions];
+}
+
+function showNextQuestion() {
+  if (remainingQuestions.length === 0) {
+    resetQuestionPool();
+  }
+
+  const randomIndex = Math.floor(Math.random() * remainingQuestions.length);
+  currentQuestion = remainingQuestions[randomIndex];
+
+  remainingQuestions.splice(randomIndex, 1);
+
+  document.getElementById('questionText').textContent = currentQuestion.question;
+  document.getElementById('answerInput').value = '';
   document.getElementById('answerInput').focus();
 }
 
