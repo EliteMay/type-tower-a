@@ -186,3 +186,12 @@ button { cursor: pointer; }
   background:rgba(255,255,255,.9);
   font-weight:900;
 }
+
+[data-screen="game"] {
+  background-image: url('../assets/images/sky-bg.jpg'); 
+  background-size: cover;         
+  background-position: center;   
+  background-repeat: no-repeat;     
+  min-height: 100vh;              
+  position: relative;
+}
