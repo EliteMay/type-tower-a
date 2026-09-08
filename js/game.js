@@ -5,7 +5,7 @@ const DATA_FILES = {
 };
 
 const MODE_UI = {
-  kanji: { prompt: '読みを入力', result: '漢字の塔 CLEAR' },
+  kanji: { prompt: '読みを入力（ひらがな）', result: '漢字の塔 CLEAR' },
   eiyaku: { prompt: '英語を入力', result: '英訳の塔 CLEAR' },
   wayaku: { prompt: '日本語を入力', result: '和訳の塔 CLEAR' }
 };
@@ -19,7 +19,24 @@ let missCount = 0;
 const GAME_TIME = 90;
 let timerId = null;
 let timeLeft = GAME_TIME;
-let startedAt=0;
+let startedAt = 0;
+
+const answerForm = document.getElementById('answerForm');
+const answerInput = document.getElementById('answerInput');
+const judgeMessage = document.getElementById('judgeMessage');
+
+answerInput.addEventListener('input', () => {
+  let val = answerInput.value;
+
+  if (typeof selectedMode !== 'undefined' && selectedMode === 'kanji') {
+    val = val.replace(/[\u30a1-\u30f6]/g, match =>
+      String.fromCharCode(match.charCodeAt(0) - 0x60)
+    );
+    answerInput.value = val.replace(/[^ぁ-ん0-９0-9]/g, '');
+  } else if (typeof selectedMode !== 'undefined' && selectedMode === 'eiyaku') {
+    answerInput.value = val.replace(/[^a-zA-Z0-9\s'-]/g, '');
+  }
+});
 
 async function prepareGame() {
   floor = 1;
@@ -75,10 +92,6 @@ function showNextQuestion() {
   document.getElementById('answerInput').focus();
 }
 
-const answerForm = document.getElementById('answerForm');
-const answerInput = document.getElementById('answerInput');
-const judgeMessage = document.getElementById('judgeMessage');
-
 answerForm.addEventListener('submit', async event => {
   event.preventDefault();
   if (!currentQuestion) return;
@@ -109,7 +122,12 @@ function isAnswerCorrect(userInput, correctAnswer, rawInput = '') {
 }
 
 function normalizeAnswer(value) {
-  return value.trim().toLowerCase().replace(/\s+/g, ' ');
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/[Ａ-Ｚａ-ｚ０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0))
+    .replace(/[\u30a1-\u30f6]/g, s => String.fromCharCode(s.charCodeAt(0) - 0x60))
+    .replace(/\s+/g, ' ');
 }
 
 async function handleCorrect() {
