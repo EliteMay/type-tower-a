@@ -5,7 +5,7 @@
   { "question": "憂鬱", "answer": "ゆううつ" },
   { "question": "頒布", "answer": "はんぷ" },
   { "question": "貢ぐ", "answer": ["みつ", "みつぐ"] },
-  { "question": "賄う", "answer": "まかな" },
+  { "question": "賄う", "answer": ["まかな","まかなう"]},
   { "question": "酪農", "answer": "らくのう" },
   { "question": "生涯", "answer": "しょうがい" },
   { "question": "迅速", "answer": "じんそく" },
