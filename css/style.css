@@ -180,3 +180,9 @@ button { cursor: pointer; }
   background:rgba(255,255,255,.9);
   font-weight:900;
 }
+.timer-box {
+  padding:8px 12px;
+  border-radius:8px;
+  background:rgba(255,255,255,.9);
+  font-weight:900;
+}
