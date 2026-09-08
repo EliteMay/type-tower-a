@@ -81,6 +81,7 @@ function isAnswerCorrect(userInput, correctAnswer) {
   if (userInput === 'debug' || userInput === '0') {
     return true;
   }
+
   if (Array.isArray(correctAnswer)) {
     return correctAnswer.some(ans => normalizeAnswer(ans) === userInput);
   }
