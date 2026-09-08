@@ -78,7 +78,7 @@ answerForm.addEventListener('submit', async event => {
 });
 
 function isAnswerCorrect(userInput, correctAnswer) {
-  if (userInput === 'debug' || userInput === '0') {
+  if (userInput == 'こたえ' ) {
     return true;
   }
 
