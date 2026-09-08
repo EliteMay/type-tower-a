@@ -14,7 +14,7 @@ async function prepareGame(){
 
 async function loadQuestions(){
   try{
-    const response=await fetch(DATA_FILES.kanji);
+    const response=await fetch(DATA_FILES[selectedMode]);
     if(!response.ok) throw new Error('HTTP '+response.status);
     questions=await response.json();
     if(!Array.isArray(questions) || questions.length===0) throw new Error('問題データが空です');
