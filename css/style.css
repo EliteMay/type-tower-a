@@ -174,3 +174,9 @@ button { cursor: pointer; }
 .result-grid span { display:block; color:#666; }
 .result-grid strong { display:block; margin-top:4px; font-size:2rem; }
 .result-actions { display:flex; justify-content:center; gap:10px; }
+.timer-box {
+  padding:8px 12px;
+  border-radius:8px;
+  background:rgba(255,255,255,.9);
+  font-weight:900;
+}
