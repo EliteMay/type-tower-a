@@ -19,6 +19,7 @@ let missCount = 0;
 const GAME_TIME = 90;
 let timerId = null;
 let timeLeft = GAME_TIME;
+let startedAt=0;
 
 async function prepareGame() {
   floor = 1;
