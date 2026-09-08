@@ -6,9 +6,9 @@ let currentQuestion = null;
 let floor = 1;
 let correctCount = 0;
 let missCount = 0;
-const GAME_TIME=90;
-let timerId=null;
-let timeLeft=GAME_TIME;
+const GAME_TIME = 90;
+let timerId = null;
+let timeLeft = GAME_TIME;
 
 async function prepareGame() {
   floor = 1;
@@ -18,8 +18,8 @@ async function prepareGame() {
   const loaded = await loadQuestions();
   if (loaded) {
     resetQuestionPool();
-    document.getElementById('resultTitle').textContent='漢字の塔 CLEAR';
-startGameTimer();
+    document.getElementById('resultTitle').textContent = '漢字の塔 CLEAR';
+    startGameTimer();
     showNextQuestion();
   }
 }
@@ -57,18 +57,20 @@ function showNextQuestion() {
   document.getElementById('answerInput').focus();
 }
 
-const answerForm=document.getElementById('answerForm');
-const answerInput=document.getElementById('answerInput');
-const judgeMessage=document.getElementById('judgeMessage');
+const answerForm = document.getElementById('answerForm');
+const answerInput = document.getElementById('answerInput');
+const judgeMessage = document.getElementById('judgeMessage');
 
 answerForm.addEventListener('submit', async event => {
   event.preventDefault();
   if (!currentQuestion) return;
 
-  const userInputValue = normalizeAnswer(answerInput.value);
-  if (!userInputValue) return;
+  const rawInput = answerInput.value.trim();
+  const userInputValue = normalizeAnswer(rawInput);
 
-  const isCorrect = isAnswerCorrect(userInputValue, currentQuestion.answer);
+  if (!rawInput) return;
+
+  const isCorrect = isAnswerCorrect(userInputValue, currentQuestion.answer, rawInput);
 
   if (isCorrect) {
     await handleCorrect();
@@ -77,7 +79,7 @@ answerForm.addEventListener('submit', async event => {
   }
 });
 
-unction isAnswerCorrect(userInput, correctAnswer, rawInput = '') {
+function isAnswerCorrect(userInput, correctAnswer, rawInput = '') {
   if (userInput === '0' || rawInput === '0' || userInput === '０' || rawInput === '０') {
     return true;
   }
@@ -88,75 +90,70 @@ unction isAnswerCorrect(userInput, correctAnswer, rawInput = '') {
   return normalizeAnswer(correctAnswer) === userInput;
 }
 
-
-function normalizeAnswer(value){
-  return value.trim().toLowerCase().replace(/\s+/g,' ');
+function normalizeAnswer(value) {
+  return value.trim().toLowerCase().replace(/\s+/g, ' ');
 }
 
-async function handleCorrect(){
-  correctCount+=1;
-  floor+=1;
+async function handleCorrect() {
+  correctCount += 1;
+  floor += 1;
   updateFloor();
-  judgeMessage.textContent='正解！ +1F';
-  if(floor>=10){
+  judgeMessage.textContent = '正解！ +1F';
+  if (floor >= 10) {
     finishGame();
     return;
   }
   showNextQuestion();
 }
 
-async function handleMiss(){
-  missCount+=1;
-  floor=Math.max(1,floor-1);
+async function handleMiss() {
+  missCount += 1;
+  floor = Math.max(1, floor - 1);
   updateFloor();
-  judgeMessage.textContent='MISS -1F';
+  judgeMessage.textContent = 'MISS -1F';
   showNextQuestion();
 }
 
-function updateFloor(){
-  document.getElementById('floorText').textContent=floor+'F';
-  document.querySelectorAll('[data-floor]').forEach(item=>{
-    item.classList.toggle('is-current',Number(item.dataset.floor)===floor);
-  });
-}
-function updateFloor(){
-  document.getElementById('floorText').textContent=floor+'F';
-
-  document.querySelectorAll('[data-floor]').forEach(item=>{
-    item.classList.toggle(
-      'is-current',
-      Number(item.dataset.floor)===floor
-    );
+function updateFloor() {
+  document.getElementById('floorText').textContent = floor + 'F';
+  document.querySelectorAll('[data-floor]').forEach(item => {
+    item.classList.toggle('is-current', Number(item.dataset.floor) === floor);
   });
 }
 
-function finishGame(){
-  clearInterval(timerId);
+function finishGame() {
+  if (timerId) {
+    clearInterval(timerId);
+    timerId = null;
+  }
 
-  document.getElementById('resultCorrect').textContent=correctCount;
-  document.getElementById('resultMiss').textContent=missCount;
+  document.getElementById('resultCorrect').textContent = correctCount;
+  document.getElementById('resultMiss').textContent = missCount;
 
   showScreen('result');
 }
 
-function startGameTimer(){
-  clearInterval(timerId);
+function startGameTimer() {
+  if (timerId) clearInterval(timerId);
 
-  timeLeft=GAME_TIME;
+  timeLeft = GAME_TIME;
   updateTimer();
 
-  timerId=setInterval(()=>{
-    timeLeft-=1;
+  timerId = setInterval(() => {
+    timeLeft -= 1;
     updateTimer();
 
-    if(timeLeft<=0){
-      clearInterval(timerId);
-      document.getElementById('resultTitle').textContent='TIME UP';
+    if (timeLeft <= 0) {
+      if (timerId) clearInterval(timerId);
+      document.getElementById('resultTitle').textContent = 'TIME UP';
       finishGame();
     }
-  },1000);
+  }, 1000);
 }
 
-function updateTimer(){
-  document.getElementById('timeText').textContent=timeLeft;
+function updateTimer() {
+  const timeEl = document.getElementById('timeText');
+  if (timeEl) {
+    timeEl.textContent = timeLeft;
+  }
 }
