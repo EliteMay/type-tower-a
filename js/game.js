@@ -6,6 +6,9 @@ let currentQuestion = null;
 let floor = 1;
 let correctCount = 0;
 let missCount = 0;
+const GAME_TIME=90;
+let timerId=null;
+let timeLeft=GAME_TIME;
 
 async function prepareGame() {
   floor = 1;
@@ -15,6 +18,8 @@ async function prepareGame() {
   const loaded = await loadQuestions();
   if (loaded) {
     resetQuestionPool();
+    document.getElementById('resultTitle').textContent='漢字の塔 CLEAR';
+startGameTimer();
     showNextQuestion();
   }
 }
@@ -110,9 +115,44 @@ function updateFloor(){
     item.classList.toggle('is-current',Number(item.dataset.floor)===floor);
   });
 }
+function updateFloor(){
+  document.getElementById('floorText').textContent=floor+'F';
+
+  document.querySelectorAll('[data-floor]').forEach(item=>{
+    item.classList.toggle(
+      'is-current',
+      Number(item.dataset.floor)===floor
+    );
+  });
+}
 
 function finishGame(){
+  clearInterval(timerId);
+
   document.getElementById('resultCorrect').textContent=correctCount;
   document.getElementById('resultMiss').textContent=missCount;
+
   showScreen('result');
+}
+
+function startGameTimer(){
+  clearInterval(timerId);
+
+  timeLeft=GAME_TIME;
+  updateTimer();
+
+  timerId=setInterval(()=>{
+    timeLeft-=1;
+    updateTimer();
+
+    if(timeLeft<=0){
+      clearInterval(timerId);
+      document.getElementById('resultTitle').textContent='TIME UP';
+      finishGame();
+    }
+  },1000);
+}
+
+function updateTimer(){
+  document.getElementById('timeText').textContent=timeLeft;
 }
