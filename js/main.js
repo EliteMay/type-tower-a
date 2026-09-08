@@ -23,4 +23,13 @@ const gameBackButton=document.getElementById('gameBackButton');
 gameBackButton.addEventListener('click',()=>{
   showScreen('select');
 });
+
 showScreen('select');
+
+document.getElementById('retryButton').addEventListener('click',()=>{
+  startGame(selectedMode);
+});
+
+document.getElementById('resultBackButton').addEventListener('click',()=>{
+  showScreen('select');
+});
