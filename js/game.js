@@ -1,4 +1,8 @@
-const DATA_FILES = { kanji: './data/kanji.json' };
+const DATA_FILES = {
+  kanji: './data/kanji.json',
+  eiyaku: './data/ja-en.json',
+  wayaku: './data/en-ja.json'
+};
 
 let questions = [];
 let remainingQuestions = [];
@@ -26,7 +30,10 @@ async function prepareGame() {
 
 async function loadQuestions() {
   try {
-    const response = await fetch(DATA_FILES.kanji);
+    const dataFile = DATA_FILES[selectedMode];
+    if (!dataFile) throw new Error('未対応のモードです: ' + selectedMode);
+
+    const response = await fetch(dataFile);
     if (!response.ok) throw new Error('HTTP ' + response.status);
     questions = await response.json();
     if (!Array.isArray(questions) || questions.length === 0) throw new Error('問題データが空です');
