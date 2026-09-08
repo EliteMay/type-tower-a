@@ -4,6 +4,12 @@ const DATA_FILES = {
   wayaku: './data/en-ja.json'
 };
 
+const MODE_UI = {
+  kanji: { prompt: '読みを入力', result: '漢字の塔 CLEAR' },
+  eiyaku: { prompt: '英語を入力', result: '英訳の塔 CLEAR' },
+  wayaku: { prompt: '日本語を入力', result: '和訳の塔 CLEAR' }
+};
+
 let questions = [];
 let remainingQuestions = [];
 let currentQuestion = null;
@@ -19,10 +25,14 @@ async function prepareGame() {
   updateFloor();
   correctCount = 0;
   missCount = 0;
+
+  const modeUi = MODE_UI[selectedMode] || MODE_UI.kanji;
+  document.querySelector('#questionCard p').textContent = modeUi.prompt;
+  document.getElementById('resultTitle').textContent = modeUi.result;
+
   const loaded = await loadQuestions();
   if (loaded) {
     resetQuestionPool();
-    document.getElementById('resultTitle').textContent = '漢字の塔 CLEAR';
     startGameTimer();
     showNextQuestion();
   }
