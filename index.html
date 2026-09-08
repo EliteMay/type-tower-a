@@ -51,7 +51,20 @@
      </div>
    </div>
  </section>
-<section data-screen="result" hidden></section>
+<section data-screen="result" hidden>
+  <div class="result-panel">
+    <p class="result-kicker">TOWER CLEAR</p>
+    <h1 id="resultTitle">漢字の塔 CLEAR</h1>
+    <div class="result-grid">
+      <div><span>正解</span><strong id="resultCorrect">0</strong></div>
+      <div><span>MISS</span><strong id="resultMiss">0</strong></div>
+    </div>
+    <div class="result-actions">
+      <button id="retryButton">もう一度挑戦</button>
+      <button id="resultBackButton">塔選択へ戻る</button>
+    </div>
+  </div>
+</section>
 
   <script src="js/game.js"></script>
   <script src="js/main.js"></script>
