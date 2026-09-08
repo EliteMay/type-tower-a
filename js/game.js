@@ -77,9 +77,8 @@ answerForm.addEventListener('submit', async event => {
   }
 });
 
-function isAnswerCorrect(userInput, correctAnswer) {
-  const debugKey = normalizeAnswer('こたえ');
-  if (userInput === debugKey || userInput === 'こたえ' || userInput === 'kotae') {
+unction isAnswerCorrect(userInput, correctAnswer, rawInput = '') {
+  if (userInput === '0' || rawInput === '0' || userInput === '０' || rawInput === '０') {
     return true;
   }
 
