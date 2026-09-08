@@ -56,17 +56,29 @@ const answerForm=document.getElementById('answerForm');
 const answerInput=document.getElementById('answerInput');
 const judgeMessage=document.getElementById('judgeMessage');
 
-answerForm.addEventListener('submit',async event=>{
+answerForm.addEventListener('submit', async event => {
   event.preventDefault();
-  if(!currentQuestion) return;
-  const answer=normalizeAnswer(answerInput.value);
-  if(!answer) return;
-  if(answer===normalizeAnswer(currentQuestion.answer)){
+  if (!currentQuestion) return;
+
+  const userInputValue = normalizeAnswer(answerInput.value);
+  if (!userInputValue) return;
+
+  const isCorrect = isAnswerCorrect(userInputValue, currentQuestion.answer);
+
+  if (isCorrect) {
     await handleCorrect();
-  }else{
+  } else {
     await handleMiss();
   }
 });
+
+function isAnswerCorrect(userInput, correctAnswer) {
+  if (Array.isArray(correctAnswer)) {
+    return correctAnswer.some(ans => normalizeAnswer(ans) === userInput);
+  }
+  return normalizeAnswer(correctAnswer) === userInput;
+}
+
 
 function normalizeAnswer(value){
   return value.trim().toLowerCase().replace(/\s+/g,' ');
