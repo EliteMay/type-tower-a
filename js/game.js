@@ -78,7 +78,8 @@ answerForm.addEventListener('submit', async event => {
 });
 
 function isAnswerCorrect(userInput, correctAnswer) {
-  if (userInput == 'こたえ' ) {
+  const debugKey = normalizeAnswer('こたえ');
+  if (userInput === debugKey || userInput === 'こたえ' || userInput === 'kotae') {
     return true;
   }
 
