@@ -110,6 +110,7 @@ answerForm.addEventListener('submit', async event => {
   }
 });
 
+/* 3つ以上の複数正解にも対応する正解判定 */
 function isAnswerCorrect(userInput, correctAnswer, rawInput = '') {
   if (userInput === '0' || rawInput === '0' || userInput === '０' || rawInput === '０') {
     return true;
@@ -122,6 +123,7 @@ function isAnswerCorrect(userInput, correctAnswer, rawInput = '') {
 }
 
 function normalizeAnswer(value) {
+  if (typeof value !== 'string') return '';
   return value
     .trim()
     .toLowerCase()
