@@ -1,4 +1,8 @@
-const DATA_FILES={kanji:'./data/kanji.json'};
+const DATA_FILES={
+  kanji:'./data/kanji.json',
+  eiyaku:'./data/ja-en.json',
+  wayaku:'./data/en-ja.json'
+};
 
 let questions=[];
 let currentQuestion=null;
