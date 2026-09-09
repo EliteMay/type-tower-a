@@ -3,17 +3,21 @@ function wait(ms){
 }
 
 async function playFloorMove(direction){
-  const scene=document.getElementById('towerScene');
+  const stage=document.querySelector('.game-stage');
+  if(!stage) return;
+
   const className=direction==='up' ? 'move-up' : 'move-down';
-  scene.classList.remove('move-up','move-down');
-  void scene.offsetWidth;
-  scene.classList.add(className);
+  stage.classList.remove('move-up','move-down');
+  void stage.offsetWidth;
+  stage.classList.add(className);
   await wait(340);
-  scene.classList.remove(className);
+  stage.classList.remove(className);
 }
 
 async function flashAnswer(type){
   const card=document.getElementById('questionCard');
+  if(!card) return;
+
   const className=type==='correct' ? 'is-correct' : 'is-miss';
   card.classList.remove('is-correct','is-miss');
   void card.offsetWidth;
