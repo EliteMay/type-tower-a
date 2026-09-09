@@ -32,6 +32,7 @@ async function prepareGame() {
   correctCount = 0;
   missCount = 0;
   isJudging = false;
+  currentQuestion = null;
 
   const modeUi = MODE_UI[selectedMode] || MODE_UI.kanji;
   document.querySelector('#questionCard p').textContent = modeUi.prompt;
@@ -51,14 +52,23 @@ async function loadQuestions() {
     const dataFile = DATA_FILES[selectedMode];
     if (!dataFile) throw new Error('未対応のモードです: ' + selectedMode);
 
-    const response = await fetch(dataFile);
+    const response = await fetch(dataFile, { cache: 'no-store' });
     if (!response.ok) throw new Error('HTTP ' + response.status);
-    questions = await response.json();
+
+    const rawText = await response.text();
+    const sanitizedText = rawText
+      .replace(/^\uFEFF/, '')
+      .replace(/\u3000/g, ' ');
+
+    questions = JSON.parse(sanitizedText);
     if (!Array.isArray(questions) || questions.length === 0) throw new Error('問題データが空です');
     return true;
   } catch (error) {
     console.error(error);
-    document.getElementById('questionText').textContent = '問題を読み込めませんでした';
+    questions = [];
+    remainingQuestions = [];
+    currentQuestion = null;
+    document.getElementById('questionText').textContent = '問題データを読み込めません';
     return false;
   }
 }
