@@ -38,6 +38,7 @@ async function prepareGame() {
   const loaded = await loadQuestions();
   if (loaded) {
     resetQuestionPool();
+    startedAt = performance.now();
     startGameTimer();
     showNextQuestion();
   }
@@ -151,8 +152,14 @@ function finishGame() {
     timerId = null;
   }
 
+  const elapsed = startedAt ? (performance.now() - startedAt) / 1000 : 0;
+  const answered = correctCount + missCount;
+  const accuracy = answered === 0 ? 0 : Math.round(correctCount / answered * 100);
+
   document.getElementById('resultCorrect').textContent = correctCount;
   document.getElementById('resultMiss').textContent = missCount;
+  document.getElementById('resultAccuracy').textContent = accuracy + '%';
+  document.getElementById('resultTime').textContent = elapsed.toFixed(1) + 's';
 
   showScreen('result');
 }
