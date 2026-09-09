@@ -1,28 +1,12 @@
 let selectedMode='kanji';
 
-const GAME_BACKGROUND_DATA={
-  kanji:['assets/images/game-kanji.b64'],
-  eiyaku:['assets/images/game-eiyaku.b64'],
-  wayaku:['assets/images/game-wayaku.b64','assets/images/game-wayaku-2.b64']
+const GAME_BACKGROUNDS={
+  kanji:'assets/images/black.jpg',
+  eiyaku:'assets/images/white.jpg',
+  wayaku:'assets/images/blue.jpg'
 };
 
-const gameBackgroundCache={};
-
-async function loadGameBackground(mode) {
-  const key=GAME_BACKGROUND_DATA[mode] ? mode : 'kanji';
-
-  if (!gameBackgroundCache[key]) {
-    const parts=await Promise.all(GAME_BACKGROUND_DATA[key].map(async path=>{
-      const response=await fetch(path);
-      if (!response.ok) throw new Error('背景を読み込めませんでした: ' + path + ' HTTP ' + response.status);
-      return (await response.text()).trim();
-    }));
-
-    gameBackgroundCache[key]='data:image/jpeg;base64,' + parts.join('');
-  }
-
-  return gameBackgroundCache[key];
-}
+const GAME_BACKGROUND_FALLBACK='assets/images/sky.jpg';
 
 document.querySelectorAll('[data-mode]').forEach(button=>{
   button.addEventListener('click',()=>{
@@ -37,12 +21,11 @@ async function startGame(mode) {
   gameScreen.dataset.mode=mode;
 
   const gameStageBg=document.getElementById('gameStageBg');
-  try {
-    gameStageBg.src=await loadGameBackground(mode);
-  } catch (error) {
-    console.error(error);
-    gameStageBg.removeAttribute('src');
-  }
+  gameStageBg.onerror=()=>{
+    gameStageBg.onerror=null;
+    gameStageBg.src=GAME_BACKGROUND_FALLBACK;
+  };
+  gameStageBg.src=GAME_BACKGROUNDS[mode] || GAME_BACKGROUNDS.kanji;
 
   showScreen('game');
   await prepareGame();
@@ -61,6 +44,10 @@ startButton.addEventListener('click',()=>{
 
 const gameBackButton=document.getElementById('gameBackButton');
 gameBackButton.addEventListener('click',()=>{
+  if (timerId) {
+    clearInterval(timerId);
+    timerId=null;
+  }
   showScreen('select');
 });
 
