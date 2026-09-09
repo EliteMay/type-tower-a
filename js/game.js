@@ -122,7 +122,7 @@ function normalizeAnswer(value) {
 async function handleCorrect() {
   correctCount += 1;
 
-  if (floor >= 10) {
+  if (floor > 10) {
     judgeMessage.textContent = '10F CLEAR！';
     finishGame();
     return;
