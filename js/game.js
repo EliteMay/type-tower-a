@@ -31,6 +31,7 @@ async function prepareGame() {
   updateFloor();
   correctCount = 0;
   missCount = 0;
+  isJudging = false;
 
   const modeUi = MODE_UI[selectedMode] || MODE_UI.kanji;
   document.querySelector('#questionCard p').textContent = modeUi.prompt;
@@ -77,8 +78,8 @@ function showNextQuestion() {
   remainingQuestions.splice(randomIndex, 1);
 
   document.getElementById('questionText').textContent = currentQuestion.question;
-  document.getElementById('answerInput').value = '';
-  document.getElementById('answerInput').focus();
+  answerInput.value = '';
+  answerInput.focus();
 }
 
 answerForm.addEventListener('submit', async event => {
@@ -128,6 +129,7 @@ async function handleCorrect() {
 
   if (floor >= 10) {
     judgeMessage.textContent = '10F CLEAR！';
+    await flashAnswer('correct');
     finishGame();
     return;
   }
@@ -135,6 +137,8 @@ async function handleCorrect() {
   floor += 1;
   updateFloor();
   judgeMessage.textContent = '正解！ +1F';
+  await flashAnswer('correct');
+  await playFloorMove('up');
   showNextQuestion();
 }
 
@@ -143,13 +147,8 @@ async function handleMiss() {
   floor = Math.max(1, floor - 1);
   updateFloor();
   judgeMessage.textContent = 'MISS -1F';
-  // handleCorrect()
-await flashAnswer('correct');
-await playFloorMove('up');
-
-// handleMiss()
-await flashAnswer('miss');
-await playFloorMove('down');
+  await flashAnswer('miss');
+  await playFloorMove('down');
   showNextQuestion();
 }
 
