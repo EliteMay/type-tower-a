@@ -1,5 +1,11 @@
 let selectedMode='kanji';
 
+const GAME_BACKGROUNDS={
+  kanji:'assets/images/game-kanji.jpg',
+  eiyaku:'assets/images/game-eiyaku.jpg',
+  wayaku:'assets/images/game-wayaku.jpg'
+};
+
 document.querySelectorAll('[data-mode]').forEach(button=>{
   button.addEventListener('click',()=>{
     startGame(button.dataset.mode);
@@ -11,6 +17,9 @@ async function startGame(mode) {
 
   const gameScreen=document.querySelector('[data-screen="game"]');
   gameScreen.dataset.mode=mode;
+
+  const gameStageBg=document.getElementById('gameStageBg');
+  gameStageBg.src=GAME_BACKGROUNDS[mode] || GAME_BACKGROUNDS.kanji;
 
   showScreen('game');
   await prepareGame();
