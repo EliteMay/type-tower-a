@@ -195,4 +195,12 @@ button { cursor: pointer; }
   min-height: 100vh;              
   position: relative;
 }
-
+.tower-scene { position:absolute; inset:0; pointer-events:none; }
+.tower-scene.move-up { animation:floorUp .34s ease; }
+.tower-scene.move-down { animation:floorDown .34s ease; }
+.question-card.is-correct { animation:correctFlash .25s ease; }
+.question-card.is-miss { animation:missFlash .25s ease; }
+@keyframes floorUp { 50% { transform:translateY(18px); } }
+@keyframes floorDown { 50% { transform:translateY(-18px); } }
+@keyframes correctFlash { 50% { box-shadow:0 0 0 8px rgba(70,180,100,.35); } }
+@keyframes missFlash { 50% { box-shadow:0 0 0 8px rgba(210,70,70,.3); } }
