@@ -39,7 +39,6 @@
      </aside>
    <button id="gameBackButton" class="back-button">塔選択へ戻る</button>
    <div class="game-stage">
-     <div id="towerScene" class="tower-scene" aria-hidden="true"></div>
      <div class="game-hud">
        <div class="hud-top"><div><strong id="floorText">1F</strong></div></div>
        <div id="questionCard" class="question-card">
@@ -61,7 +60,7 @@
       <div><span>正解</span><strong id="resultCorrect">0</strong></div>
       <div><span>MISS</span><strong id="resultMiss">0</strong></div>
       <div><span>正答率</span><strong id="resultAccuracy">0%</strong></div>
-<div><span>TIME</span><strong id="resultTime">0.0s</strong></div>
+      <div><span>TIME</span><strong id="resultTime">0.0s</strong></div>
     </div>
     <div class="result-actions">
       <button id="retryButton">もう一度挑戦</button>
@@ -70,8 +69,8 @@
   </div>
 </section>
 
+  <script src="js/effects.js"></script>
   <script src="js/game.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/effects.js"></script>
 </body>
 </html>
