@@ -6,8 +6,6 @@ const GAME_BACKGROUNDS={
   wayaku:'assets/images/blue.jpg'
 };
 
-const GAME_BACKGROUND_FALLBACK='assets/images/sky.jpg';
-
 document.querySelectorAll('[data-mode]').forEach(button=>{
   button.addEventListener('click',()=>{
     startGame(button.dataset.mode);
@@ -23,7 +21,7 @@ async function startGame(mode) {
   const gameStageBg=document.getElementById('gameStageBg');
   gameStageBg.onerror=()=>{
     gameStageBg.onerror=null;
-    gameStageBg.src=GAME_BACKGROUND_FALLBACK;
+    gameStageBg.removeAttribute('src');
   };
   gameStageBg.src=GAME_BACKGROUNDS[mode] || GAME_BACKGROUNDS.kanji;
 
