@@ -2,7 +2,7 @@ let selectedMode='kanji';
 
 const GAME_BACKGROUNDS={
   kanji:'assets/images/black.jpg',
-  eiyaku:'assets/images/white.jpg',
+  eiyaku:'assets/images/aa.jpg',
   wayaku:'assets/images/blue.jpg'
 };
 
