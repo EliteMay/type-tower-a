@@ -121,13 +121,16 @@ function normalizeAnswer(value) {
 
 async function handleCorrect() {
   correctCount += 1;
-  floor += 1;
-  updateFloor();
-  judgeMessage.textContent = '正解！ +1F';
+
   if (floor >= 10) {
+    judgeMessage.textContent = '10F CLEAR！';
     finishGame();
     return;
   }
+
+  floor += 1;
+  updateFloor();
+  judgeMessage.textContent = '正解！ +1F';
   showNextQuestion();
 }
 
