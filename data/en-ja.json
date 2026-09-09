@@ -29,7 +29,6 @@
   { "question": "peace", "answer": ["平和", "和平", "へいわ", "わへい"] },
   { "question": "environment", "answer": ["環境", "かんきょう"] },
   { "question": "population", "answer": ["人口", "じんこう"] },
-
   { "question": "accept", "answer": ["受け入れる", "受諾する", "うけいれる", "じゅだくする"] },
   { "question": "choose", "answer": ["選ぶ", "選択する", "えらぶ", "せんたくする"] },
   { "question": "decide", "answer": ["決める", "決定する", "きめる", "けっていする"] },
@@ -55,7 +54,6 @@
   { "question": "share", "answer": ["共有する", "分け合う", "きょうゆうする", "わけあう"] },
   { "question": "support", "answer": ["支える", "支持する", "ささえる", "しじする"] },
   { "question": "suggest", "answer": ["提案する", "勧める", "ていあんする", "すすめる"] },
-
   { "question": "important", "answer": ["重要な", "大切な", "じゅうような", "たいせつな"] },
   { "question": "necessary", "answer": ["必要な", "必要不可欠な", "ひつような", "ひつようふかけつな"] },
   { "question": "possible", "answer": ["可能な", "実現可能な", "かのうな", "じつげんかのうな"] },
