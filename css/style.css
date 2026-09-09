@@ -78,6 +78,7 @@ button { cursor: pointer; }
   position: relative;
   display: grid;
   place-items: center;
+  min-height: 100vh;
   padding: 70px 24px 24px;
   background: url("../assets/images/sky-bg.jpg") center / cover no-repeat;
 }
@@ -159,6 +160,7 @@ button { cursor: pointer; }
 }
 .floor-rail span.is-current { background: #17345f; color: #fff; outline: 2px solid #d8ae58; }
 #floorText { display: block; color: #17345f; font-size: clamp(2rem,5vw,3.5rem); }
+
 [data-screen="result"] { display:grid; place-items:center; padding:32px; }
 .result-panel {
   width:min(620px,100%);
@@ -180,24 +182,9 @@ button { cursor: pointer; }
   background:rgba(255,255,255,.9);
   font-weight:900;
 }
-.timer-box {
-  padding:8px 12px;
-  border-radius:8px;
-  background:rgba(255,255,255,.9);
-  font-weight:900;
-}
 
-[data-screen="game"] {
-  background-image: url('../assets/images/sky-bg.jpg'); 
-  background-size: cover;         
-  background-position: center;   
-  background-repeat: no-repeat;     
-  min-height: 100vh;              
-  position: relative;
-}
-.tower-scene { position:absolute; inset:0; pointer-events:none; }
-.tower-scene.move-up { animation:floorUp .34s ease; }
-.tower-scene.move-down { animation:floorDown .34s ease; }
+.game-stage.move-up { animation:floorUp .34s ease; }
+.game-stage.move-down { animation:floorDown .34s ease; }
 .question-card.is-correct { animation:correctFlash .25s ease; }
 .question-card.is-miss { animation:missFlash .25s ease; }
 @keyframes floorUp { 50% { transform:translateY(18px); } }
