@@ -20,6 +20,7 @@ const GAME_TIME = 90;
 let timerId = null;
 let timeLeft = GAME_TIME;
 let startedAt = 0;
+let isJudging = false;
 
 const answerForm = document.getElementById('answerForm');
 const answerInput = document.getElementById('answerInput');
@@ -82,19 +83,22 @@ function showNextQuestion() {
 
 answerForm.addEventListener('submit', async event => {
   event.preventDefault();
-  if (!currentQuestion) return;
+  if (!currentQuestion || isJudging) return;
 
   const rawInput = answerInput.value.trim();
   const userInputValue = normalizeAnswer(rawInput);
-
   if (!rawInput) return;
 
-  const isCorrect = isAnswerCorrect(userInputValue, currentQuestion.answer, rawInput);
-
-  if (isCorrect) {
-    await handleCorrect();
-  } else {
-    await handleMiss();
+  isJudging = true;
+  try {
+    const isCorrect = isAnswerCorrect(userInputValue, currentQuestion.answer, rawInput);
+    if (isCorrect) {
+      await handleCorrect();
+    } else {
+      await handleMiss();
+    }
+  } finally {
+    isJudging = false;
   }
 });
 
@@ -139,6 +143,13 @@ async function handleMiss() {
   floor = Math.max(1, floor - 1);
   updateFloor();
   judgeMessage.textContent = 'MISS -1F';
+  // handleCorrect()
+await flashAnswer('correct');
+await playFloorMove('up');
+
+// handleMiss()
+await flashAnswer('miss');
+await playFloorMove('down');
   showNextQuestion();
 }
 
