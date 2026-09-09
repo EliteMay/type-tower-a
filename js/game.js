@@ -33,6 +33,7 @@ async function prepareGame() {
   missCount = 0;
   isJudging = false;
   currentQuestion = null;
+  judgeMessage.textContent = '';
 
   const modeUi = MODE_UI[selectedMode] || MODE_UI.kanji;
   document.querySelector('#questionCard p').textContent = modeUi.prompt;
@@ -68,7 +69,8 @@ async function loadQuestions() {
     questions = [];
     remainingQuestions = [];
     currentQuestion = null;
-    document.getElementById('questionText').textContent = '問題データを読み込めません';
+    document.getElementById('questionText').textContent = '---';
+    judgeMessage.textContent = '問題データの読み込みに失敗しました';
     return false;
   }
 }
