@@ -1,5 +1,11 @@
 let selectedMode='kanji';
 
+const GAME_BACKGROUNDS={
+  kanji:'assets/images/tower-blue.jpg',
+  eiyaku:'assets/images/tower-light.jpg',
+  wayaku:'assets/images/tower-dark.jpg'
+};
+
 document.querySelectorAll('[data-mode]').forEach(button=>{
   button.addEventListener('click',()=>{
     startGame(button.dataset.mode);
@@ -8,7 +14,13 @@ document.querySelectorAll('[data-mode]').forEach(button=>{
 
 async function startGame(mode) {
   selectedMode=mode;
-  document.querySelector('[data-screen="game"]').dataset.mode=mode;
+
+  const gameScreen=document.querySelector('[data-screen="game"]');
+  gameScreen.dataset.mode=mode;
+
+  const gameStageBg=document.getElementById('gameStageBg');
+  gameStageBg.src=GAME_BACKGROUNDS[mode] || GAME_BACKGROUNDS.kanji;
+
   showScreen('game');
   await prepareGame();
 }
