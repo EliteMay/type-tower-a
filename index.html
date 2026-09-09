@@ -41,7 +41,10 @@
   </section>
 
   <section data-screen="game" hidden>
-    <img class="game-screen-bg" src="assets/images/sky-bg.jpg" alt="" aria-hidden="true">
+    <video class="game-screen-bg" autoplay muted loop playsinline>
+      <source src="assets/videos/menu-bg.mp4" type="video/mp4">
+    </video>
+    <div class="game-screen-shade" aria-hidden="true"></div>
 
     <aside class="floor-rail">
       <span data-floor="10">10F</span><span data-floor="9">9F</span>
@@ -53,7 +56,7 @@
     </aside>
     <button id="gameBackButton" class="back-button">塔選択へ戻る</button>
     <div class="game-stage">
-      <img id="gameStageBg" class="game-stage-bg" src="assets/images/tower-blue.jpg" alt="" aria-hidden="true">
+      <div class="game-stage-shade" aria-hidden="true"></div>
       <div class="game-hud">
         <div class="hud-top"><div><strong id="floorText">1F</strong></div></div>
         <div id="questionCard" class="question-card">
