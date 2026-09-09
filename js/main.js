@@ -1,9 +1,9 @@
 let selectedMode='kanji';
 
 const GAME_BACKGROUNDS={
-  kanji:'assets/images/game-kanji.webp',
-  eiyaku:'assets/images/game-eiyaku.webp',
-  wayaku:'assets/images/game-wayaku.webp'
+  kanji:'assets/images/game-kanji.jpg',
+  eiyaku:'assets/images/game-eiyaku.jpg',
+  wayaku:'assets/images/game-wayaku.jpg'
 };
 
 document.querySelectorAll('[data-mode]').forEach(button=>{
