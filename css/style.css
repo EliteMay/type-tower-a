@@ -151,6 +151,7 @@ button { cursor: pointer; }
   place-items: center;
   min-height: 100vh;
   padding: 70px 24px 24px;
+  background: #7db7e6;
 }
 .game-screen-bg {
   position: absolute;
@@ -162,30 +163,35 @@ button { cursor: pointer; }
   object-position: center;
   pointer-events: none;
 }
+.game-screen-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(13, 38, 66, .08);
+  pointer-events: none;
+}
 .back-button { position: absolute; top: 18px; left: 18px; z-index: 10; }
 .game-stage {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: min(920px, 100%);
   min-height: min(680px, 86vh);
   overflow: hidden;
   border: 7px solid #aa8d64;
   border-radius: 18px;
+  background: rgba(22, 43, 67, .16);
   box-shadow: 0 24px 50px rgba(31,73,108,.24);
 }
-.game-stage-bg {
+.game-stage-shade {
   position: absolute;
   inset: 0;
   z-index: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(12,31,54,.12));
   pointer-events: none;
 }
 .game-hud {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   min-height: min(680px, 86vh);
   display: grid;
   align-content: center;
