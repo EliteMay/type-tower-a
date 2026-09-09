@@ -19,12 +19,17 @@ function showScreen(screenName) {
   });
 }
 
+const startButton=document.getElementById('startButton');
+startButton.addEventListener('click',()=>{
+  showScreen('select');
+});
+
 const gameBackButton=document.getElementById('gameBackButton');
 gameBackButton.addEventListener('click',()=>{
   showScreen('select');
 });
 
-showScreen('select');
+showScreen('home');
 
 document.getElementById('retryButton').addEventListener('click',()=>{
   startGame(selectedMode);
