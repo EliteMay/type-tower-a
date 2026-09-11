@@ -1,12 +1,13 @@
 const DATA_FILES = {
   kanji: './data/kanji-levels.json',
-  english: './data/english-words.json'
+  english: './data/english-words.json',
+  englishKana: './data/english-kana.json'
 };
 
 const MODE_UI = {
   kanji: { prompt: '読みを入力（ひらがな）', result: '漢字の塔 CLEAR' },
   eiyaku: { prompt: '英単語を入力', result: '英訳の塔 CLEAR' },
-  wayaku: { prompt: '日本語を入力', result: '和訳の塔 CLEAR' }
+  wayaku: { prompt: '日本語を入力（漢字・ひらがな）', result: '和訳の塔 CLEAR' }
 };
 
 let mondaiList = [];
@@ -55,6 +56,19 @@ async function gameJunbi() {
   tsugiNoMondai();
 }
 
+async function hiraganaLoad() {
+  const response = await fetch(DATA_FILES.englishKana, { cache: 'no-store' });
+  if (!response.ok) throw new Error('ひらがなデータ HTTP ' + response.status);
+
+  const rawText = await response.text();
+  const data = JSON.parse(rawText.replace(/^\uFEFF/, '').replace(/\u3000/g, ' '));
+  if (!data || typeof data !== 'object' || Array.isArray(data)) {
+    throw new Error('ひらがなデータの形式が違います');
+  }
+
+  return data;
+}
+
 async function mondaiLoad() {
   try {
     const dataFile = selectedMode === 'kanji' ? DATA_FILES.kanji : DATA_FILES.english;
@@ -78,10 +92,19 @@ async function mondaiLoad() {
         answer: item.enAnswers || item.en
       }));
     } else {
-      mondaiList = levelData.map(item => ({
-        question: item.en,
-        answer: item.jaAnswers || item.ja
-      }));
+      const hiraganaMap = await hiraganaLoad();
+
+      mondaiList = levelData.map(item => {
+        const answers = Array.isArray(item.jaAnswers) ? [...item.jaAnswers] : [item.ja];
+        const hiraganaAnswer = hiraganaMap[item.en];
+
+        if (hiraganaAnswer) answers.push(hiraganaAnswer);
+
+        return {
+          question: item.en,
+          answer: [...new Set(answers)]
+        };
+      });
     }
 
     if (mondaiList.length === 0) throw new Error('このレベルの問題がありません');
