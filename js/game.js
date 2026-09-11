@@ -98,7 +98,11 @@ async function mondaiLoad() {
         const answers = Array.isArray(item.jaAnswers) ? [...item.jaAnswers] : [item.ja];
         const hiraganaAnswer = hiraganaMap[item.en];
 
-        if (hiraganaAnswer) answers.push(hiraganaAnswer);
+        if (typeof hiraganaAnswer !== 'string' || !hiraganaAnswer.trim()) {
+          throw new Error('ひらがな回答がありません: ' + item.en);
+        }
+
+        answers.push(hiraganaAnswer);
 
         return {
           question: item.en,
