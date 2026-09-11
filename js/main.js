@@ -77,12 +77,14 @@ async function gameStart(mode) {
   const gameScreen = document.querySelector('[data-screen="game"]');
   gameScreen.dataset.mode = mode;
 
-  const gameStageBg = document.getElementById('gameStageBg');
-  gameStageBg.onerror = () => {
-    gameStageBg.onerror = null;
-    gameStageBg.removeAttribute('src');
-  };
-  gameStageBg.src = GAME_BACKGROUNDS[mode] || GAME_BACKGROUNDS.kanji;
+  const backgroundSrc = GAME_BACKGROUNDS[mode] || GAME_BACKGROUNDS.kanji;
+  document.querySelectorAll('.game-stage-bg').forEach(gameStageBg => {
+    gameStageBg.onerror = () => {
+      gameStageBg.onerror = null;
+      gameStageBg.removeAttribute('src');
+    };
+    gameStageBg.src = backgroundSrc;
+  });
 
   screenKirikae('game');
   await gameJunbi();
