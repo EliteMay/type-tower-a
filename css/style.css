@@ -434,10 +434,10 @@ button:focus-visible, input:focus-visible {
 }
 
 .game-stage.move-up .tower-scroll-track {
-  animation: towerMoveUp .72s cubic-bezier(.45, 0, .2, 1);
+  animation: towerMoveUp 1.4s cubic-bezier(.55, .05, .18, 1);
 }
 .game-stage.move-down .tower-scroll-track {
-  animation: towerMoveDown .72s cubic-bezier(.45, 0, .2, 1);
+  animation: towerMoveDown 1.4s cubic-bezier(.55, .05, .18, 1);
 }
 .game-stage.floor-blocked-down .tower-scroll-track {
   animation: floorBlockedDown .3s ease;
@@ -445,12 +445,14 @@ button:focus-visible, input:focus-visible {
 .question-card.is-correct { animation:correctFlash .25s ease; }
 .question-card.is-miss { animation:missFlash .25s ease; }
 @keyframes towerMoveUp {
-  from { transform: translateY(0); }
-  to { transform: translateY(100vh); }
+  0% { transform: translateY(0); filter: blur(0); }
+  48% { filter: blur(1.5px); }
+  100% { transform: translateY(100vh); filter: blur(0); }
 }
 @keyframes towerMoveDown {
-  from { transform: translateY(0); }
-  to { transform: translateY(-100vh); }
+  0% { transform: translateY(0); filter: blur(0); }
+  48% { filter: blur(1.5px); }
+  100% { transform: translateY(-100vh); filter: blur(0); }
 }
 @keyframes floorBlockedDown {
   0%, 100% { transform: translateY(0); }
@@ -464,7 +466,7 @@ button:focus-visible, input:focus-visible {
   .game-stage.move-up .tower-scroll-track,
   .game-stage.move-down .tower-scroll-track,
   .game-stage.floor-blocked-down .tower-scroll-track {
-    animation-duration: 1ms;
+    animation-duration: .24s;
   }
 }
 
