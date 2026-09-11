@@ -1,70 +1,63 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 320" preserveAspectRatio="none">
   <defs>
     <linearGradient id="cloudFill" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity=".98"/>
-      <stop offset=".58" stop-color="#eef7ff" stop-opacity=".96"/>
-      <stop offset="1" stop-color="#d5eafb" stop-opacity=".9"/>
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".99"/>
+      <stop offset=".58" stop-color="#f3f9fe" stop-opacity=".98"/>
+      <stop offset="1" stop-color="#d8ebf9" stop-opacity=".94"/>
     </linearGradient>
     <linearGradient id="cloudShade" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#ddecf8" stop-opacity=".18"/>
-      <stop offset="1" stop-color="#a9d0ec" stop-opacity=".56"/>
+      <stop offset="0" stop-color="#dcecf8" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#9fc7e4" stop-opacity=".54"/>
     </linearGradient>
-    <filter id="softEdge" x="-10%" y="-20%" width="120%" height="150%">
-      <feGaussianBlur stdDeviation="2.5"/>
+    <filter id="soft" x="-3%" y="-8%" width="106%" height="118%">
+      <feGaussianBlur stdDeviation="1.4"/>
     </filter>
   </defs>
 
-  <g filter="url(#softEdge)">
-    <path d="M0 270
-      C60 244 102 252 145 267
-      C205 226 267 232 316 264
-      C374 244 420 250 470 272
-      C528 232 590 230 644 268
-      C704 242 759 246 808 271
-      C866 228 932 234 982 266
-      C1040 240 1096 246 1146 273
-      C1200 232 1268 234 1317 266
-      C1373 241 1427 247 1473 272
-      C1520 246 1561 251 1600 268
-      L1600 320 L0 320 Z" fill="url(#cloudFill)"/>
+  <g filter="url(#soft)">
+    <path d="M0 272
+      C28 242 62 236 92 252
+      C102 205 139 178 181 199
+      C197 132 259 101 318 154
+      C361 112 438 126 466 205
+      C510 174 563 191 582 244
+      C622 219 668 220 704 246
+      C721 166 779 126 837 168
+      C865 90 952 72 1007 143
+      C1068 111 1138 146 1152 220
+      C1196 181 1250 191 1277 237
+      C1311 206 1354 215 1375 245
+      C1399 159 1470 127 1523 182
+      C1551 164 1582 184 1600 222
+      L1600 320 L0 320 Z"
+      fill="url(#cloudFill)"
+      stroke="#d5e9f7"
+      stroke-width="7"
+      stroke-opacity=".68"/>
 
-    <g fill="url(#cloudFill)">
-      <ellipse cx="35" cy="234" rx="104" ry="72"/>
-      <ellipse cx="128" cy="196" rx="118" ry="100"/>
-      <ellipse cx="226" cy="236" rx="106" ry="70"/>
+    <path d="M0 287
+      C95 268 170 278 240 292
+      C330 263 419 270 500 294
+      C596 266 690 273 780 296
+      C878 265 982 271 1070 294
+      C1160 266 1250 273 1340 295
+      C1430 270 1516 276 1600 289
+      L1600 320 L0 320 Z"
+      fill="url(#cloudShade)"/>
 
-      <ellipse cx="330" cy="224" rx="112" ry="80"/>
-      <ellipse cx="425" cy="142" rx="132" ry="128"/>
-      <ellipse cx="535" cy="219" rx="118" ry="88"/>
-
-      <ellipse cx="650" cy="235" rx="110" ry="70"/>
-      <ellipse cx="748" cy="180" rx="126" ry="112"/>
-      <ellipse cx="850" cy="226" rx="114" ry="82"/>
-
-      <ellipse cx="970" cy="224" rx="116" ry="84"/>
-      <ellipse cx="1070" cy="126" rx="140" ry="132"/>
-      <ellipse cx="1184" cy="216" rx="124" ry="92"/>
-
-      <ellipse cx="1300" cy="236" rx="108" ry="72"/>
-      <ellipse cx="1402" cy="174" rx="128" ry="114"/>
-      <ellipse cx="1532" cy="224" rx="124" ry="88"/>
-      <ellipse cx="1608" cy="246" rx="88" ry="66"/>
+    <g fill="#b9d8ee" opacity=".23">
+      <ellipse cx="255" cy="244" rx="92" ry="34"/>
+      <ellipse cx="521" cy="266" rx="78" ry="28"/>
+      <ellipse cx="930" cy="239" rx="108" ry="38"/>
+      <ellipse cx="1210" cy="262" rx="84" ry="30"/>
+      <ellipse cx="1480" cy="245" rx="94" ry="34"/>
     </g>
 
-    <g fill="url(#cloudShade)" opacity=".72">
-      <ellipse cx="172" cy="258" rx="118" ry="46"/>
-      <ellipse cx="468" cy="260" rx="138" ry="48"/>
-      <ellipse cx="792" cy="263" rx="132" ry="44"/>
-      <ellipse cx="1126" cy="258" rx="146" ry="50"/>
-      <ellipse cx="1430" cy="264" rx="138" ry="44"/>
-    </g>
-
-    <g fill="#ffffff" opacity=".52">
-      <ellipse cx="102" cy="170" rx="50" ry="38"/>
-      <ellipse cx="390" cy="106" rx="62" ry="48"/>
-      <ellipse cx="718" cy="148" rx="58" ry="42"/>
-      <ellipse cx="1032" cy="88" rx="68" ry="52"/>
-      <ellipse cx="1370" cy="140" rx="60" ry="44"/>
+    <g fill="#ffffff" opacity=".72">
+      <ellipse cx="270" cy="145" rx="48" ry="29"/>
+      <ellipse cx="805" cy="161" rx="45" ry="27"/>
+      <ellipse cx="947" cy="112" rx="54" ry="31"/>
+      <ellipse cx="1475" cy="165" rx="46" ry="27"/>
     </g>
   </g>
 </svg>
