@@ -343,6 +343,12 @@ button:focus-visible, input:focus-visible {
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 8vh, #000 calc(100% - 8vh), transparent 100%);
   mask-image: linear-gradient(to bottom, transparent 0, #000 8vh, #000 calc(100% - 8vh), transparent 100%);
 }
+
+.game-stage::after {
+  filter: blur(12px) opacity(1.22);
+  transform: scale(1.025);
+  transform-origin: center;
+}
 .game-stage-bg {
   position: absolute;
   top: 50%;
