@@ -8,6 +8,10 @@ body {
 }
 button, input, select { font: inherit; }
 button { cursor: pointer; }
+button:focus-visible, input:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
 [hidden] { display: none !important; }
 
 [data-screen] { min-height: 100vh; }
@@ -75,10 +79,6 @@ button { cursor: pointer; }
   box-shadow: 0 18px 36px rgba(0,0,0,.42);
 }
 .home-start-button:active { transform: translateY(1px); }
-.home-start-button:focus-visible {
-  outline: 4px solid #fff;
-  outline-offset: 5px;
-}
 
 [data-screen="select"] {
   position: relative;
@@ -87,7 +87,8 @@ button { cursor: pointer; }
   align-content: center;
   padding: 34px clamp(18px, 4vw, 60px);
 }
-.select-bg-video {
+.select-bg-video,
+.settings-bg-video {
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -130,7 +131,8 @@ button { cursor: pointer; }
 }
 .tower-option button,
 .result-actions button,
-.back-button {
+.back-button,
+.endless-end-button {
   min-height: 44px;
   padding: 9px 16px;
   border: 2px solid #d8ae58;
@@ -141,7 +143,119 @@ button { cursor: pointer; }
 }
 .tower-option button:hover,
 .result-actions button:hover,
-.back-button:hover { background: #102744; }
+.back-button:hover,
+.endless-end-button:hover { background: #102744; }
+
+[data-screen="settings"] {
+  position: relative;
+  isolation: isolate;
+  overflow: auto;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 32px 18px;
+}
+.settings-bg-video { z-index: -2; }
+.settings-shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(7, 19, 36, .52);
+}
+.game-settings {
+  position: relative;
+  width: min(760px, 100%);
+  padding: 34px clamp(22px, 5vw, 48px) 40px;
+  border: 3px solid #d8ae58;
+  border-radius: 16px;
+  background: rgba(255, 250, 240, .97);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, .34);
+}
+.settings-back {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  padding: 7px 11px;
+  border: 0;
+  background: transparent;
+  color: #5d513d;
+  font-weight: 800;
+}
+.settings-back:hover { color: #172034; }
+.settings-kicker {
+  margin: 4px 0 6px;
+  color: #9a7d42;
+  text-align: center;
+  font-size: .82rem;
+  font-weight: 900;
+  letter-spacing: .16em;
+}
+.game-settings h1 {
+  margin: 0;
+  text-align: center;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: clamp(2.1rem, 6vw, 3.6rem);
+}
+.settings-hint {
+  margin: 8px 0 28px;
+  color: #6c6255;
+  text-align: center;
+  font-weight: 700;
+}
+.setting-row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 22px;
+  align-items: center;
+  padding: 18px 0;
+  border-top: 1px solid #d9d0bf;
+}
+.setting-label strong,
+.setting-label span { display: block; }
+.setting-label strong {
+  color: #17345f;
+  font-size: 1.05rem;
+  letter-spacing: .08em;
+}
+.setting-label span {
+  margin-top: 3px;
+  color: #746a5e;
+  font-size: .82rem;
+}
+.setting-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.setting-choice {
+  min-height: 42px;
+  padding: 8px 15px;
+  border: 2px solid #b9b1a4;
+  border-radius: 8px;
+  background: #fff;
+  color: #253149;
+  font-weight: 800;
+}
+.setting-choice:hover { border-color: #8e7441; }
+.setting-choice.is-selected {
+  border-color: #d8ae58;
+  background: #17345f;
+  color: #fff;
+}
+.game-start-button {
+  display: block;
+  width: min(360px, 100%);
+  min-height: 68px;
+  margin: 28px auto 0;
+  border: 3px solid #d8ae58;
+  border-radius: 10px;
+  background: #17345f;
+  color: #fff;
+  font-size: 1.7rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+.game-start-button:hover { background: #102744; }
 
 [data-screen="game"] {
   position: relative;
@@ -164,6 +278,25 @@ button { cursor: pointer; }
   pointer-events: none;
 }
 .back-button { position: absolute; top: 18px; left: 18px; z-index: 10; }
+.endless-end-button { position: absolute; top: 18px; right: 18px; z-index: 10; }
+.game-info-bar {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  z-index: 9;
+  display: flex;
+  gap: 8px;
+  transform: translateX(-50%);
+}
+.game-info-bar span {
+  padding: 7px 11px;
+  border: 1px solid rgba(255,255,255,.65);
+  border-radius: 7px;
+  background: rgba(23,52,95,.86);
+  color: #fff;
+  font-size: .82rem;
+  font-weight: 900;
+}
 .game-stage {
   position: relative;
   z-index: 1;
@@ -247,6 +380,7 @@ button { cursor: pointer; }
   font-weight: 800;
 }
 .floor-rail span.is-current { background: #17345f; color: #fff; outline: 2px solid #d8ae58; }
+.is-endless .floor-rail [data-floor] { display: none; }
 #floorText {
   display: block;
   color: #fff3cf;
@@ -265,12 +399,15 @@ button { cursor: pointer; }
   padding:32px;
   border:2px solid #d8ae58;
   border-radius:16px;
-  background:#fff;
+  background:rgba(255,255,255,.97);
   text-align:center;
+  box-shadow: 0 14px 34px rgba(17,35,55,.2);
 }
+.result-panel h1 { margin-bottom: 6px; }
 .result-kicker { margin:0 0 6px; font-weight:900; color:#7b673d; }
+.result-setting-text { margin: 0; color: #6b7280; font-size: .9rem; font-weight: 700; }
 .result-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin:24px 0; }
-.result-grid div { padding:18px; border:1px solid #ddd; border-radius:10px; }
+.result-grid div { padding:18px; border:1px solid #ddd; border-radius:10px; background: rgba(255,255,255,.82); }
 .result-grid span { display:block; color:#666; }
 .result-grid strong { display:block; margin-top:4px; font-size:2rem; }
 .result-actions { display:flex; justify-content:center; gap:10px; }
@@ -294,10 +431,20 @@ button { cursor: pointer; }
   [data-screen="home"] { padding: 22px; }
   .home-content { gap: 36px; }
   .home-start-button { min-height: 76px; }
+  .tower-select { grid-template-columns: 1fr; align-items: center; }
+  .tower-image { height: 180px; max-width: 320px; }
+  [data-screen="settings"] { align-items: start; padding-top: 18px; }
+  .game-settings { padding: 58px 18px 26px; }
+  .setting-row { grid-template-columns: 1fr; gap: 10px; }
+  .setting-options { display: grid; grid-template-columns: repeat(2, 1fr); }
+  .setting-choice { width: 100%; }
   [data-screen="game"] { padding: 0; }
   .game-stage { width: 100%; height: 100vh; }
   .game-stage-bg { height: 108vh; }
   .game-hud { padding-inline: 14px; }
   .floor-rail { left: 8px; opacity: .9; }
   .floor-rail span { width: 48px; }
+  .game-info-bar { top: 72px; }
+  .endless-end-button { top: auto; right: 10px; bottom: 12px; }
+  .result-actions { flex-direction: column; }
 }
