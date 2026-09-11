@@ -332,10 +332,10 @@ button:focus-visible, input:focus-visible {
   position: absolute;
   left: -20%;
   right: -20%;
-  bottom: 0;
+  bottom: -4vh;
   z-index: 2;
-  height: 34vh;
-  min-height: 220px;
+  height: 26vh;
+  min-height: 170px;
   pointer-events: none;
   opacity: .99;
   background:
