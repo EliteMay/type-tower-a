@@ -254,7 +254,12 @@ button { cursor: pointer; }
   text-shadow: 0 2px 10px rgba(0,0,0,.75);
 }
 
-[data-screen="result"] { display:grid; place-items:center; padding:32px; }
+[data-screen="result"] {
+  display:grid;
+  place-items:center;
+  padding:32px;
+  background: #8ecdf4 url("../assets/images/sky.jpg") center / cover no-repeat;
+}
 .result-panel {
   width:min(620px,100%);
   padding:32px;
