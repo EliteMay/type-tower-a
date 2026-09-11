@@ -328,8 +328,7 @@ button:focus-visible, input:focus-visible {
   margin-bottom: -8vh;
   overflow: hidden;
 }
-.tower-frame::before,
-.tower-frame::after {
+.game-stage::before {
   content: "";
   position: absolute;
   inset: 0;
