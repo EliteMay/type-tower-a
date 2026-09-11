@@ -345,6 +345,7 @@ button:focus-visible, input:focus-visible {
 }
 
 .game-stage::after {
+  background-position: center -10vh;
   filter: blur(12px) opacity(1.22);
   transform: scale(1.025);
   transform-origin: center;
