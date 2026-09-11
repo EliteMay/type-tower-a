@@ -2,8 +2,10 @@ function waitMs(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function motionWait(normalDuration) {
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 1 : normalDuration;
+function motionWait(normalDuration, reducedDuration) {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ? reducedDuration
+    : normalDuration;
 }
 
 async function floorMove(direction) {
@@ -14,7 +16,7 @@ async function floorMove(direction) {
   stage.classList.remove('move-up', 'move-down', 'floor-blocked-down');
   void stage.offsetWidth;
   stage.classList.add(className);
-  await waitMs(motionWait(720));
+  await waitMs(motionWait(1400, 240));
   stage.classList.remove(className);
 }
 
@@ -25,7 +27,7 @@ async function floorBlocked() {
   stage.classList.remove('move-up', 'move-down', 'floor-blocked-down');
   void stage.offsetWidth;
   stage.classList.add('floor-blocked-down');
-  await waitMs(motionWait(300));
+  await waitMs(motionWait(300, 240));
   stage.classList.remove('floor-blocked-down');
 }
 
