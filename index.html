@@ -40,6 +40,58 @@
     </div>
   </section>
 
+  <section data-screen="settings" hidden>
+    <video class="settings-bg-video" autoplay muted loop playsinline>
+      <source src="assets/videos/menu-bg.mp4" type="video/mp4">
+    </video>
+    <div class="settings-shade" aria-hidden="true"></div>
+
+    <div class="game-settings">
+      <button id="settingsBackButton" class="settings-back" type="button">← 塔選択へ</button>
+      <p class="settings-kicker">GAME SETTING</p>
+      <h1 id="settingsTitle">漢字の塔</h1>
+      <p id="settingsHint" class="settings-hint">日本語を学ぶ人向け・漢字の読みを練習</p>
+
+      <div class="setting-row">
+        <div class="setting-label">
+          <strong>MODE</strong>
+          <span>遊び方</span>
+        </div>
+        <div class="setting-options" role="group" aria-label="ゲームモード">
+          <button class="setting-choice is-selected" type="button" data-game-mode="normal" aria-pressed="true">通常</button>
+          <button class="setting-choice" type="button" data-game-mode="endless" aria-pressed="false">ENDLESS</button>
+        </div>
+      </div>
+
+      <div class="setting-row">
+        <div class="setting-label">
+          <strong>LEVEL</strong>
+          <span>問題の難しさ</span>
+        </div>
+        <div class="setting-options" role="group" aria-label="問題レベル">
+          <button class="setting-choice" type="button" data-level="1" aria-pressed="false">Lv.1 基礎</button>
+          <button class="setting-choice is-selected" type="button" data-level="2" aria-pressed="true">Lv.2 標準</button>
+          <button class="setting-choice" type="button" data-level="3" aria-pressed="false">Lv.3 発展</button>
+        </div>
+      </div>
+
+      <div class="setting-row">
+        <div class="setting-label">
+          <strong>TIME</strong>
+          <span>制限時間</span>
+        </div>
+        <div class="setting-options" role="group" aria-label="制限時間">
+          <button class="setting-choice" type="button" data-time="60" aria-pressed="false">60秒</button>
+          <button class="setting-choice is-selected" type="button" data-time="90" aria-pressed="true">90秒</button>
+          <button class="setting-choice" type="button" data-time="120" aria-pressed="false">120秒</button>
+          <button class="setting-choice" type="button" data-time="none" aria-pressed="false">無制限</button>
+        </div>
+      </div>
+
+      <button id="playButton" class="game-start-button" type="button">START</button>
+    </div>
+  </section>
+
   <section data-screen="game" hidden>
     <img class="game-screen-bg" src="assets/images/sky.jpg" alt="" aria-hidden="true">
     <aside class="floor-rail">
@@ -50,7 +102,12 @@
       <span data-floor="2">2F</span><span data-floor="1">1F</span>
       <div class="timer-box">TIME <strong id="timeText">90</strong></div>
     </aside>
-    <button id="gameBackButton" class="back-button">塔選択へ戻る</button>
+    <button id="gameBackButton" class="back-button" type="button">設定へ戻る</button>
+    <button id="endlessEndButton" class="endless-end-button" type="button" hidden>終了してRESULT</button>
+    <div class="game-info-bar" aria-live="polite">
+      <span id="modeText">NORMAL</span>
+      <span id="levelText">Lv.2</span>
+    </div>
     <div class="game-stage">
       <img id="gameStageBg" class="game-stage-bg" alt="" aria-hidden="true">
       <div class="game-hud">
@@ -71,6 +128,7 @@
     <div class="result-panel">
       <p class="result-kicker">RESULT</p>
       <h1 id="resultTitle">漢字の塔 CLEAR</h1>
+      <p id="resultSettingText" class="result-setting-text"></p>
       <div class="result-grid">
         <div><span>正解</span><strong id="resultCorrect">0</strong></div>
         <div><span>MISS</span><strong id="resultMiss">0</strong></div>
@@ -78,8 +136,8 @@
         <div><span>TIME</span><strong id="resultTime">0.0s</strong></div>
       </div>
       <div class="result-actions">
-        <button id="retryButton">もう一度挑戦</button>
-        <button id="resultBackButton">塔選択へ戻る</button>
+        <button id="retryButton" type="button">もう一度挑戦</button>
+        <button id="resultBackButton" type="button">塔選択へ戻る</button>
       </div>
     </div>
   </section>
