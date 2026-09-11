@@ -337,7 +337,8 @@ button:focus-visible, input:focus-visible {
   height: 26vh;
   min-height: 170px;
   pointer-events: none;
-  opacity: .99;
+  opacity: 0;
+  will-change: opacity;
   background:
     radial-gradient(ellipse at 8% 58%, rgba(255,255,255,.98) 0 24%, transparent 58%),
     radial-gradient(ellipse at 25% 40%, rgba(239,248,255,.94) 0 27%, transparent 60%),
@@ -463,6 +464,10 @@ button:focus-visible, input:focus-visible {
 .game-stage.move-down .tower-scroll-track {
   animation: towerMoveDown 1.4s cubic-bezier(.55, .05, .18, 1);
 }
+.game-stage.move-up .tower-frame::after,
+.game-stage.move-down .tower-frame::after {
+  animation: cloudPass 1.4s ease-in-out both;
+}
 .game-stage.floor-blocked-down .tower-scroll-track {
   animation: floorBlockedDown .3s ease;
 }
@@ -478,6 +483,12 @@ button:focus-visible, input:focus-visible {
   48% { filter: blur(3px); }
   100% { transform: translateY(-100vh); filter: blur(0); }
 }
+@keyframes cloudPass {
+  0% { opacity: 0; }
+  16% { opacity: .99; }
+  82% { opacity: .99; }
+  100% { opacity: 0; }
+}
 @keyframes floorBlockedDown {
   0%, 100% { transform: translateY(0); }
   35% { transform: translateY(-18px); }
@@ -490,6 +501,10 @@ button:focus-visible, input:focus-visible {
   .game-stage.move-up .tower-scroll-track,
   .game-stage.move-down .tower-scroll-track,
   .game-stage.floor-blocked-down .tower-scroll-track {
+    animation-duration: .24s;
+  }
+  .game-stage.move-up .tower-frame::after,
+  .game-stage.move-down .tower-frame::after {
     animation-duration: .24s;
   }
 }
