@@ -349,6 +349,24 @@ button:focus-visible, input:focus-visible {
   box-shadow: 0 0 52px rgba(245, 251, 255, .72);
   transform: translateZ(0);
 }
+.tower-frame:first-child::after {
+  left: -10%;
+  right: -10%;
+  bottom: -12vh;
+  height: 30vh;
+  min-height: 190px;
+  background:
+    radial-gradient(ellipse at 3% 72%, rgba(255,255,255,.96) 0 18%, transparent 52%),
+    radial-gradient(ellipse at 16% 48%, rgba(238,248,255,.94) 0 23%, transparent 57%),
+    radial-gradient(ellipse at 31% 70%, rgba(255,255,255,1) 0 25%, transparent 60%),
+    radial-gradient(ellipse at 48% 42%, rgba(243,250,255,.96) 0 24%, transparent 59%),
+    radial-gradient(ellipse at 64% 68%, rgba(255,255,255,1) 0 27%, transparent 62%),
+    radial-gradient(ellipse at 80% 46%, rgba(237,247,255,.94) 0 23%, transparent 57%),
+    radial-gradient(ellipse at 97% 72%, rgba(255,255,255,.96) 0 18%, transparent 52%);
+  filter: blur(14px);
+  box-shadow: 0 12px 48px rgba(245, 251, 255, .68);
+}
+
 .game-stage-bg {
   position: absolute;
   top: 50%;
