@@ -308,6 +308,24 @@ button:focus-visible, input:focus-visible {
   border-radius: 0;
   box-shadow: none;
 }
+
+/* Screen-top cloud bank: fills the upper sky without creating a flat band. */
+.game-stage::before {
+  content: "";
+  position: absolute;
+  top: -3vh;
+  left: -4%;
+  z-index: 2;
+  width: 108%;
+  height: 24vh;
+  min-height: 150px;
+  pointer-events: none;
+  opacity: .97;
+  background: url("../assets/images/cloud-seam.svg") center top / 100% 100% no-repeat;
+  filter: drop-shadow(0 10px 16px rgba(220, 239, 252, .48));
+  transform: rotate(180deg);
+  transform-origin: center;
+}
 .tower-scroll-track {
   position: absolute;
   top: -100vh;
