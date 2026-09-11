@@ -163,6 +163,8 @@ async function seikaiSyori() {
     floorHyouji();
     judgeMessage.textContent = '正解！';
     await answerFlash('correct');
+    if (gameFinished) return;
+    await floorMove('up');
     if (!gameFinished) tsugiNoMondai();
     return;
   }
@@ -178,6 +180,7 @@ async function seikaiSyori() {
   floorHyouji();
   judgeMessage.textContent = '正解！ +1F';
   await answerFlash('correct');
+  if (gameFinished) return;
   await floorMove('up');
   if (!gameFinished) tsugiNoMondai();
 }
@@ -192,11 +195,19 @@ async function missSyori() {
     return;
   }
 
+  const movedDown = floor > 1;
   floor = Math.max(1, floor - 1);
   floorHyouji();
-  judgeMessage.textContent = 'MISS -1F';
+  judgeMessage.textContent = movedDown ? 'MISS -1F' : 'MISS 1F';
   await answerFlash('miss');
-  await floorMove('down');
+  if (gameFinished) return;
+
+  if (movedDown) {
+    await floorMove('down');
+  } else {
+    await floorBlocked('down');
+  }
+
   if (!gameFinished) tsugiNoMondai();
 }
 
