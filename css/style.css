@@ -323,8 +323,30 @@ button:focus-visible, input:focus-visible {
 .tower-frame {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 108vh;
+  margin-bottom: -8vh;
   overflow: hidden;
+}
+.tower-frame::after {
+  content: "";
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  bottom: 0;
+  z-index: 2;
+  height: 16vh;
+  min-height: 96px;
+  pointer-events: none;
+  opacity: .82;
+  background:
+    radial-gradient(ellipse at 8% 58%, rgba(255,255,255,.78) 0 15%, transparent 42%),
+    radial-gradient(ellipse at 25% 40%, rgba(232,245,255,.72) 0 18%, transparent 46%),
+    radial-gradient(ellipse at 46% 62%, rgba(255,255,255,.84) 0 20%, transparent 48%),
+    radial-gradient(ellipse at 68% 38%, rgba(224,242,255,.72) 0 17%, transparent 45%),
+    radial-gradient(ellipse at 90% 60%, rgba(255,255,255,.78) 0 16%, transparent 43%),
+    linear-gradient(180deg, transparent 4%, rgba(239,248,255,.54) 46%, transparent 96%);
+  filter: blur(10px);
+  transform: translateZ(0);
 }
 .game-stage-bg {
   position: absolute;
@@ -335,6 +357,7 @@ button:focus-visible, input:focus-visible {
   max-width: none;
   object-fit: contain;
   object-position: center;
+  z-index: 1;
   transform: translate(-50%, -50%);
 }
 .game-hud {
@@ -446,12 +469,12 @@ button:focus-visible, input:focus-visible {
 .question-card.is-miss { animation:missFlash .25s ease; }
 @keyframes towerMoveUp {
   0% { transform: translateY(0); filter: blur(0); }
-  48% { filter: blur(1.5px); }
+  48% { filter: blur(3px); }
   100% { transform: translateY(100vh); filter: blur(0); }
 }
 @keyframes towerMoveDown {
   0% { transform: translateY(0); filter: blur(0); }
-  48% { filter: blur(1.5px); }
+  48% { filter: blur(3px); }
   100% { transform: translateY(-100vh); filter: blur(0); }
 }
 @keyframes floorBlockedDown {
