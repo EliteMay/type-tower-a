@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TYPE TOWER</title>
   <link rel="icon" href="assets/images/rogo.jpg" type="image/jpeg">
+  <link rel="preload" href="assets/images/loading-bg.webp" as="image" type="image/webp">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/loading.css">
 </head>
 <body>
   <section data-screen="home">
@@ -89,6 +91,24 @@
       </div>
 
       <button id="playButton" class="game-start-button" type="button">START</button>
+    </div>
+  </section>
+
+  <section data-screen="loading" hidden aria-labelledby="loadingTitle" aria-busy="true">
+    <img class="loading-screen-bg" src="assets/images/loading-bg.webp" alt="" aria-hidden="true">
+    <div class="loading-screen-shade" aria-hidden="true"></div>
+    <div id="loadingPanel" class="loading-panel">
+      <p class="loading-kicker">TYPE TOWER</p>
+      <h1 id="loadingTitle">問題を準備中…</h1>
+      <p id="loadingStatus" class="loading-status" aria-live="polite">次のことばを準備しています</p>
+      <div id="loadingProgress" class="loading-progress" role="progressbar" aria-label="読み込み進捗" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <span id="loadingProgressBar" class="loading-progress-bar"></span>
+      </div>
+      <div class="loading-progress-meta" aria-hidden="true">
+        <span>LOADING</span>
+        <strong id="loadingPercent">0%</strong>
+      </div>
+      <button id="loadingBackButton" class="loading-back-button" type="button" hidden>設定へ戻る</button>
     </div>
   </section>
 

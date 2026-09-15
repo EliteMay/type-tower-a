@@ -1,0 +1,181 @@
+[data-screen="loading"] {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: clamp(18px, 4vw, 56px);
+  background: #8ec9f4;
+}
+
+.loading-screen-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+.loading-screen-shade {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(255, 255, 255, .02) 0 24%, rgba(255, 255, 255, .2) 64%, rgba(237, 246, 255, .4) 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(234, 244, 255, .12));
+  pointer-events: none;
+}
+
+.loading-panel {
+  position: relative;
+  width: min(690px, calc(100vw - 36px));
+  padding: clamp(28px, 5vw, 48px) clamp(24px, 6vw, 58px) clamp(26px, 4vw, 40px);
+  border: 2px solid rgba(216, 174, 88, .92);
+  border-radius: 22px;
+  background: rgba(255, 250, 240, .88);
+  box-shadow:
+    0 22px 55px rgba(24, 54, 88, .2),
+    inset 0 1px 0 rgba(255, 255, 255, .9);
+  backdrop-filter: blur(12px) saturate(1.06);
+  -webkit-backdrop-filter: blur(12px) saturate(1.06);
+  text-align: center;
+}
+
+.loading-panel::before,
+.loading-panel::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: min(120px, 22%);
+  height: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgba(216, 174, 88, .95), transparent);
+}
+
+.loading-panel::before { top: 17px; }
+.loading-panel::after { bottom: 17px; }
+
+.loading-kicker {
+  margin: 0 0 10px;
+  color: #9a7d42;
+  font-size: .78rem;
+  font-weight: 900;
+  letter-spacing: .22em;
+}
+
+.loading-panel h1 {
+  margin: 0;
+  color: #172034;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: clamp(2.15rem, 5vw, 3.55rem);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: .035em;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .9);
+}
+
+.loading-status {
+  min-height: 1.5em;
+  margin: 12px 0 24px;
+  color: #5f6f83;
+  font-size: clamp(.92rem, 2vw, 1.05rem);
+  font-weight: 700;
+}
+
+.loading-progress {
+  position: relative;
+  width: 100%;
+  height: 18px;
+  overflow: hidden;
+  border: 2px solid rgba(23, 52, 95, .18);
+  border-radius: 999px;
+  background: rgba(224, 234, 243, .84);
+  box-shadow:
+    inset 0 2px 5px rgba(43, 66, 91, .1),
+    0 0 0 1px rgba(255, 255, 255, .72);
+}
+
+.loading-progress-bar {
+  position: relative;
+  display: block;
+  width: 0;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #17345f 0%, #2979c8 46%, #55d7e7 100%);
+  box-shadow: 0 0 16px rgba(62, 180, 224, .42);
+  transition: width .28s ease;
+}
+
+.loading-progress-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 0 34%, rgba(255, 255, 255, .5) 48%, transparent 62% 100%);
+  transform: translateX(-120%);
+  animation: loading-shine 1.25s ease-in-out infinite;
+}
+
+.loading-progress-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 9px;
+  color: #66758a;
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+.loading-progress-meta strong {
+  color: #17345f;
+  font-size: .86rem;
+  letter-spacing: .03em;
+}
+
+.loading-back-button {
+  min-height: 44px;
+  margin-top: 22px;
+  padding: 9px 18px;
+  border: 2px solid #d8ae58;
+  border-radius: 9px;
+  background: #17345f;
+  color: #fff;
+  font-weight: 900;
+}
+
+.loading-back-button:hover { background: #102744; }
+
+.loading-panel.is-error .loading-progress-bar {
+  background: linear-gradient(90deg, #81383f, #b75050);
+  box-shadow: none;
+}
+
+.loading-panel.is-error .loading-status { color: #8b3434; }
+
+@keyframes loading-shine {
+  0%, 18% { transform: translateX(-120%); }
+  78%, 100% { transform: translateX(120%); }
+}
+
+@media (max-width: 720px) {
+  [data-screen="loading"] { padding: 16px; }
+  .loading-panel {
+    width: min(560px, 100%);
+    padding: 30px 22px 28px;
+    border-radius: 18px;
+  }
+  .loading-status { margin-bottom: 20px; }
+  .loading-progress { height: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-progress-bar { transition: none; }
+  .loading-progress-bar::after { animation: none; }
+}
