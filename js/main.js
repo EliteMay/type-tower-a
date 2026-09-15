@@ -30,6 +30,7 @@ const MODE_INFO = {
 };
 
 const LOADING_STEP_COUNT = 3;
+const MIN_LOADING_DURATION_MS = 5000;
 
 function loadingReset() {
   const panel = document.getElementById('loadingPanel');
@@ -131,6 +132,12 @@ async function gameStart(mode) {
   loadingReset();
   screenKirikae('loading');
 
+  // ロードが速い環境でも画面を確認できるよう、最低5秒は表示する。
+  // ゲーム本体のタイマーはこの待機後に開始するため、制限時間は減らない。
+  const minimumLoadingTime = new Promise(resolve => {
+    setTimeout(resolve, MIN_LOADING_DURATION_MS);
+  });
+
   let completedSteps = 0;
   const completeStep = statusText => {
     completedSteps += 1;
@@ -153,6 +160,9 @@ async function gameStart(mode) {
     if (!skyReady || !towerReady) {
       console.warn('一部の背景画像を読み込めませんでした');
     }
+
+    loadingProgressSet(completedSteps / LOADING_STEP_COUNT * 100, 'ゲーム開始を準備しています');
+    await minimumLoadingTime;
 
     loadingProgressSet(completedSteps / LOADING_STEP_COUNT * 100, '問題データを読み込んでいます');
     await gameJunbi();
